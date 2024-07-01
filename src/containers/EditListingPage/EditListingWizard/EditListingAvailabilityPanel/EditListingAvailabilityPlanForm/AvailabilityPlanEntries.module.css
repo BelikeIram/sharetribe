@@ -164,3 +164,11 @@
 .notSelected {
   color: var(--colorGrey300);
 }
+
+.timeRange{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+
+}

@@ -17,6 +17,7 @@ const isValidCommission = commissionLineItem => {
 
 const LineItemProviderCommissionMaybe = props => {
   const { lineItems, isProvider, marketplaceName, intl } = props;
+  console.log({marketplaceName});
 
   const providerCommissionLineItem = lineItems.find(
     item => item.code === LINE_ITEM_PROVIDER_COMMISSION && !item.reversal

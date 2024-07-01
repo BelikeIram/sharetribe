@@ -31,6 +31,7 @@ const sortEntries = () => (a, b) => {
  * @param {Array<string>} weekdays ['mon', 'tue', etc.]
  */
 const submit = (onSubmit, weekdays) => values => {
+
   const sortedValues = weekdays.reduce(
     (submitValues, day) => {
       return submitValues[day]
@@ -52,6 +53,7 @@ const submit = (onSubmit, weekdays) => values => {
  */
 const EditListingAvailabilityPlanFormComponent = props => {
   const { onSubmit, ...restOfprops } = props;
+
   return (
     <FinalForm
       {...restOfprops}
@@ -74,6 +76,8 @@ const EditListingAvailabilityPlanFormComponent = props => {
           fetchErrors,
           values,
         } = fieldRenderProps;
+
+        console.log({...restOfprops });
 
         const classes = classNames(rootClassName || css.root, className);
         const submitInProgress = inProgress;

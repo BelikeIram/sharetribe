@@ -43,6 +43,8 @@ export const OrderBreakdownComponent = props => {
     marketplaceName,
   } = props;
 
+  console.log({ marketplaceName});
+
   const isCustomer = userRole === 'customer';
   const isProvider = userRole === 'provider';
   const allLineItems = transaction.attributes.lineItems || [];

@@ -134,7 +134,7 @@ const renderForm = formRenderProps => {
     marketplaceName,
     values,
   } = formRenderProps;
-
+console.log({ marketplaceName});
   // Note: don't add custom logic before useEffect
   useEffect(() => {
     setMounted(true);

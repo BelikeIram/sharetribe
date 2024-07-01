@@ -267,6 +267,7 @@ const TimeRangeHidden = props => {
  */
 const AvailabilityPlanEntries = props => {
   const { dayOfWeek, useFullDays, values, formApi, intl } = props;
+   console.log({dayOfWeek, useFullDays});
   const entries = values[dayOfWeek];
   const hasEntries = entries && entries[0];
   const getEntryStartTimes = getEntryBoundaries(entries, intl, true);
@@ -306,7 +307,10 @@ const AvailabilityPlanEntries = props => {
               if (shouldAddEntry) {
                 // The 'hour' unit is not initialized with any value,
                 // because user need to pick them themselves.
-                formApi.mutators.push(dayOfWeek, { startTime: null, endTime: null });
+                formApi.mutators.push(dayOfWeek, { 
+                startTime: '00:00',
+                endTime: '24:00',
+                seats: 1, });
               
               } else if (!isChecked) {
                 // If day of week checkbox is unchecked,
@@ -336,9 +340,9 @@ const AvailabilityPlanEntries = props => {
 
                   // If full days (00:00 - 24:00) are used we'll hide the start time and end time fields.
                   // This affects only day & night unit types by default.
-                  return useFullDays ? (
+                  // return useFullDays ? (
                     // <TimeRangeHidden name={name} key={name} />
-                    <TimeRangeHidden
+                   return useFullDays ? ( <TimeRangeHidden
                     name={name}
                     key={name}
                     intl={intl}
@@ -350,32 +354,50 @@ const AvailabilityPlanEntries = props => {
                       formApi.mutators.update(dayOfWeek, 0, { ...currentPlan, seats: value });
                     }}
                   />
-                  ) : (
-                    <TimeRangeSelects
-                      key={name}
-                      name={name}
-                      index={index}
-                      availableStartHours={availableStartHours}
-                      availableEndHours={availableEndHours}
-                      isTimeSetFn={isTimeSetFn}
-                      entries={entries}
-                      isNextDay={isNextDay}
-                      onRemove={() => {
-                        fields.remove(index);
-                        const hasOnlyOneEntry = fields.value?.length === 1;
-                        if (hasOnlyOneEntry) {
-                          const activeDays = values['activePlanDays'];
-                          const cleanedDays = activeDays.filter(d => d !== dayOfWeek);
-                          // The day should not be active anymore
-                          formApi.change('activePlanDays', cleanedDays);
-                        }
+                  ) : 
+                 (
+                   <div>
+                        <TimeRangeSelects
+                        key={name}
+                        name={name}
+                        index={index}
+                        availableStartHours={availableStartHours}
+                        availableEndHours={availableEndHours}
+                        isTimeSetFn={isTimeSetFn}
+                        entries={entries}
+                        isNextDay={isNextDay}
+                        onRemove={() => {
+                          fields.remove(index);
+                          const hasOnlyOneEntry = fields.value?.length === 1;
+                          if (hasOnlyOneEntry) {
+                            const activeDays = values['activePlanDays'];
+                            const cleanedDays = activeDays.filter(d => d !== dayOfWeek);
+                            // The day should not be active anymore
+                            formApi.change('activePlanDays', cleanedDays);
+                          }
+                        }}
+                        intl={intl}
+                      /> 
+                      <FieldTextInput
+                        name={`${name}.seats`}
+                        type="number"
+                        initialValue={entries[0]}
+                        placeholder={intl.formatMessage({
+                          id: 'EditListingAvailabilityPlanForm.seatsPlaceholder',
+                        })}
+                        min="1"
+                        onChange={e => {
+                        const { value } = e.currentTarget;
+                        const { values } = formApi.getState();
+                        const currentPlan = values[dayOfWeek][0];
+                        formApi.mutators.update(dayOfWeek, 0, { ...currentPlan, seats: value });
                       }}
-                      intl={intl}
-                    />
+                      />
+                   </div>
                   );
                 })}
 
-                {!useFullDays && fields.length > 0 ? (
+                { /* !useFullDays && fields.length > 0 ? (
                   <InlineTextButton
                     type="button"
                     className={css.buttonAddNew}
@@ -383,7 +405,7 @@ const AvailabilityPlanEntries = props => {
                   >
                     <FormattedMessage id="EditListingAvailabilityPlanForm.addAnother" />
                   </InlineTextButton>
-                ) : null}
+                ) : null */}
               </div>
             );
           }}

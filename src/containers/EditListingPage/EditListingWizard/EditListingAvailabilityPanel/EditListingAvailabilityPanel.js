@@ -81,7 +81,6 @@ const createEntriesFromSubmitValues = values =>
       return startTime && endTime
         ? {
             dayOfWeek,
-            seats: 1,
             seats: seatsValue,
             startTime,
             endTime: endTime === '24:00' ? '00:00' : endTime,
@@ -129,6 +128,8 @@ const EditListingAvailabilityPanel = props => {
     routeConfiguration,
     history,
   } = props;
+
+  console.log('list',{listing});
   // Hooks
   const [isEditPlanModalOpen, setIsEditPlanModalOpen] = useState(false);
   const [isEditExceptionsModalOpen, setIsEditExceptionsModalOpen] = useState(false);
@@ -176,7 +177,7 @@ const EditListingAvailabilityPanel = props => {
 
   // Save exception click handler
   const saveException = values => {
-    const { availability, exceptionStartTime, exceptionEndTime, exceptionRange } = values;
+    const { availability, exceptionStartTime, exceptionEndTime, exceptionRange,  seats: rawSeats } = values;
 
     // TODO: add proper seat handling
     const seats = availability === 'available' ? 1 : 0;
