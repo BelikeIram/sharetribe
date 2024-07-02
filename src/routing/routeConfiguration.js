@@ -12,6 +12,9 @@ import { NamedRedirect } from '../components';
 
 const pageDataLoadingAPI = getPageDataLoadingAPI();
 
+const ComprehensiveResourcePage = loadable(()=>   import(
+  /* webpackChunkName: "ComprehensiveResourcePage" */ '../containers/ComprehensiveResourcePage/ComprehensiveResourcePage'
+))
 const AuthenticationPage = loadable(() => import(/* webpackChunkName: "AuthenticationPage" */ '../containers/AuthenticationPage/AuthenticationPage'));
 const CheckoutPage = loadable(() => import(/* webpackChunkName: "CheckoutPage" */ '../containers/CheckoutPage/CheckoutPage'));
 const CMSPage = loadable(() => import(/* webpackChunkName: "CMSPage" */ '../containers/CMSPage/CMSPage'));
@@ -74,6 +77,11 @@ const routeConfiguration = (layoutConfig) => {
       name: 'LandingPage',
       component: LandingPage,
       loadData: pageDataLoadingAPI.LandingPage.loadData,
+    },
+    {
+      path: '/p/resources',
+      name: 'ComprehensiveResourcePage',
+      component: ComprehensiveResourcePage,
     },
     {
       path: '/p/:pageId',
