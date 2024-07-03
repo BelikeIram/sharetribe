@@ -1,11 +1,15 @@
 @import '../../styles/customMediaQueries.css';
 
+.wrapper{
+    max-width: 850px;
+    margin: 0 auto;
+}
+
 .content {
     padding: 4rem 2rem;
     margin: 4rem auto;
     text-align: center;
     word-break: break-word;
-    max-width: 850px;
 
     @media screen and (max-width:568px) {
      padding: 2rem;
@@ -25,8 +29,23 @@
 .content .resourceMap{
     margin-top: 35px;
 }
-
-
+.contentBtn{
+    background-color: var(--marketplaceColor);
+    border-radius: 4px;
+    box-shadow: 0 8px 16px 0 #0003;
+    color: #fff;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 24px;
+    padding: 8px 20px;
+    text-decoration: none;
+    border: none;
+}
+.contentBtn:hover{
+    background-color: var(--marketplaceColorDark);
+    text-decoration: none;
+}
 .link {
   display: block;
   margin-top: 6px;

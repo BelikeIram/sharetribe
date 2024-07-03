@@ -36,13 +36,22 @@ const ComprehensiveResourcePage = () => {
         {() => (
         <>
             <TopbarContainer />
-            <div className={css.content}>
-                <H3>Comprehensive Resource Map</H3>
-                <p className={css.contentPara}>This map includes both our marketplace providers and a broader list of public businesses that offer valuable services and resources for children and families. Search by your location, category, or simply type in any keyword like karate or art. If you would like to have your business added or updated please complete the form at the bottom of this page.</p>
-                <div className={css.resourceMap}>
-                <iframe width="100%" src="https://viewer.mapme.com/3041e69c-c008-4443-b04c-ccdebd5ba3e1" frameborder="0" allowfullscreen allow="fullscreen; geolocation" scrolling="no" style={{minHeight: "90vh", maxHeight: "90vh", border:"1px solid lightgrey", borderRadius: "2px"}}></iframe>
-                </div>
-            </div>
+               <div className={css.wrapper}>
+                <section className={css.content}>
+                  <H3>Comprehensive Resource Map</H3>
+                  <p className={css.contentPara}>This map includes both our marketplace providers and a broader list of public businesses that offer valuable services and resources for children and families. Search by your location, category, or simply type in any keyword like karate or art. If you would like to have your business added or updated please complete the form at the bottom of this page.</p>
+                  <div className={css.resourceMap}>
+                    <iframe width="100%" src="https://viewer.mapme.com/3041e69c-c008-4443-b04c-ccdebd5ba3e1" frameborder="0" allowfullscreen allow="fullscreen; geolocation" scrolling="no" style={{minHeight: "90vh", maxHeight: "90vh", border:"1px solid lightgrey", borderRadius: "2px"}}></iframe>
+                  </div>
+                </section>
+                <section className={css.content}>
+                   <H3>Form</H3>
+                   <p className={css.contentPara}>Add or update your business listing by completing the form below or email us.</p>
+                   <div>
+                       <a href='https://forms.gle/Xfn3sqif1o8XXkwu9' target='_blank' className={css.contentBtn}>Form</a>
+                   </div>
+                </section>
+               </div>
             <FooterContainer />
         </>
         )}
