@@ -48,7 +48,7 @@ const ComprehensiveResourcePage = () => {
                    <H3>Form</H3>
                    <p className={css.contentPara}>Add or update your business listing by completing the form below or email us.</p>
                    <div>
-                       <a href='https://forms.gle/Xfn3sqif1o8XXkwu9' target='_blank' className={css.contentBtn}>Form</a>
+                       <a href='https://forms.gle/3v4NVHhZeoZq7N3o7' target='_blank' className={css.contentBtn}>Form</a>
                    </div>
                 </section>
                </div>
